@@ -794,7 +794,7 @@ const Chat = () => {
   const fetchChatSessions = async (selectNewId = null) => {
     if (!token) return;
     try {
-      const response = await fetch("http://localhost:8000/chat-sessions", {
+      const response = await fetch("https://backend-for-askurpdf-production.up.railway.app/chat-sessions", {
         credentials: 'include',
       });
       if (response.status === 401) {
@@ -827,7 +827,7 @@ const Chat = () => {
     setIsLoading(true);
     try {
       const response = await fetch(
-        `http://localhost:8000/chat-sessions/${chatId}`,
+        `https://backend-for-askurpdf-production.up.railway.app/chat-sessions/${chatId}`,
         {
           method: "DELETE",
           credentials: 'include',
@@ -860,7 +860,7 @@ const Chat = () => {
   const handleToggleStar = async (chatId) => {
     try {
       const response = await fetch(
-        `http://localhost:8000/chat-sessions/${chatId}/star`,
+        `https://backend-for-askurpdf-production.up.railway.app/chat-sessions/${chatId}/star`,
         {
           method: "PUT",
           credentials: 'include',

@@ -46,7 +46,7 @@ const Chatbot = ({
   const fetchChatHistory = async (chatId) => {
     if (!token || !chatId) return;
     try {
-      const response = await fetch(`http://localhost:8000/chats/${chatId}`, {
+      const response = await fetch(`https://backend-for-askurpdf-production.up.railway.app/chats/${chatId}`, {
         method: 'GET',
         credentials: 'include',
         cache: 'no-store'
@@ -98,7 +98,7 @@ const Chatbot = ({
     setIsLoading(true);
 
     try {
-      const response = await fetch('http://localhost:8000/query', {
+      const response = await fetch('https://backend-for-askurpdf-production.up.railway.app/query', {
         method: 'POST',
         credentials: 'include',
         headers: {
@@ -140,7 +140,7 @@ const Chatbot = ({
   const handleUpdateDatabase = async () => {
     setIsLoading(true);
     try {
-      const response = await fetch('http://localhost:8000/ingest', {
+      const response = await fetch('https://backend-for-askurpdf-production.up.railway.app/ingest', {
         method: 'POST',
         credentials: 'include'
       });
@@ -191,7 +191,7 @@ const Chatbot = ({
     formData.append("file", file);
 
     try {
-      const response = await fetch('http://localhost:8000/chat-sessions', {
+      const response = await fetch('https://backend-for-askurpdf-production.up.railway.app/chat-sessions', {
         method: 'POST',
         credentials: 'include',
         body: formData,
@@ -222,8 +222,8 @@ const Chatbot = ({
 
   const currentSession = chatSessions.find(s => s.chat_id === activeChatId);
   const currentFilename = currentSession?.filename || 'Document';
-  const downloadUrl = `http://localhost:8000/user-files/${encodeURIComponent(currentFilename)}/download`;
-  const viewUrl = `http://localhost:8000/user-files/${encodeURIComponent(currentFilename)}/view`;
+  const downloadUrl = `https://backend-for-askurpdf-production.up.railway.app/user-files/${encodeURIComponent(currentFilename)}/download`;
+  const viewUrl = `https://backend-for-askurpdf-production.up.railway.app/user-files/${encodeURIComponent(currentFilename)}/view`;
 
   let formattedDate = 'Recently uploaded';
   if (currentSession?.created_at) {

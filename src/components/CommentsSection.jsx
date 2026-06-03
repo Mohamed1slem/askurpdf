@@ -16,7 +16,7 @@ const CommentsSection = () => {
 
   const fetchComments = async () => {
     try {
-      const response = await fetch("http://localhost:8000/comments");
+      const response = await fetch("https://backend-for-askurpdf-production.up.railway.app/comments");
       if (response.ok) {
         const data = await response.json();
         setComments(data);
@@ -37,7 +37,7 @@ const CommentsSection = () => {
     setLoading(true);
     setError(null);
     try {
-      const response = await fetch("http://localhost:8000/comments", {
+      const response = await fetch("https://backend-for-askurpdf-production.up.railway.app/comments", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -67,7 +67,7 @@ const CommentsSection = () => {
     if (!window.confirm("Are you sure you want to delete this comment?")) return;
     
     try {
-      const response = await fetch(`http://localhost:8000/comments/${commentId}`, {
+      const response = await fetch(`https://backend-for-askurpdf-production.up.railway.app/comments/${commentId}`, {
         method: "DELETE",
         credentials: "include",
       });

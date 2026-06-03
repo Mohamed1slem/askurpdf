@@ -36,7 +36,7 @@ const authSlice = createSlice({
       deleteCookie("email");
       
       // Also notify backend to clear HttpOnly cookies
-      fetch('http://localhost:8000/logout', { method: 'POST', credentials: 'include' }).catch(console.error);
+      fetch('https://backend-for-askurpdf-production.up.railway.app/logout', { method: 'POST', credentials: 'include' }).catch(console.error);
     },
     Register:(state,action)=>{
       const {user,email,password}= action.payload;
