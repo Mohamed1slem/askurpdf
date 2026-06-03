@@ -74,13 +74,7 @@ import {
   SquareTerminal,
   Star,
   Trash2,
-  Play,
-  Pause,
-  Volume2,
-  VolumeX,
-  Maximize,
   CheckCircle2,
-  Video,
   Layers,
   Cpu,
   ArrowRight,
@@ -123,10 +117,6 @@ const DATA = {
           id: "doc-get-started",
           title: "Get Started",
         },
-        {
-          id: "doc-tutorials",
-          title: "Tutorials",
-        },
       ],
     },
     {
@@ -151,37 +141,6 @@ const DATA = {
   ],
 };
 
-// Database of tutorials
-const TUTORIAL_VIDEOS = [
-  {
-    title: "1. Getting Started with AskYourPdf",
-    description:
-      "Learn the fundamentals of AskYourPdf. See how to navigate your workspace, initiate document-scoped chats, and explore standard interface panels.",
-    url: "https://assets.mixkit.co/videos/preview/mixkit-software-developer-working-on-his-computer-34327-large.mp4",
-    duration: "1:02",
-    thumbnail:
-      "https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=350&q=80",
-  },
-  {
-    title: "2. Advanced Semantic Citations",
-    description:
-      "Deep dive into RAG-powered citations. Learn how the AI references pages and paragraphs inside your PDFs so you can audit answers instantly.",
-    url: "https://assets.mixkit.co/videos/preview/mixkit-hand-holding-smartphone-with-social-media-icons-42358-large.mp4",
-    duration: "0:45",
-    thumbnail:
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=350&q=80",
-  },
-  {
-    title: "3. Workspace Folders & Settings",
-    description:
-      "Discover how to organize multiple documents into scoped collections, configure RAG models (temperature, creativity), and manage account preferences.",
-    url: "https://assets.mixkit.co/videos/preview/mixkit-blogging-at-home-42340-large.mp4",
-    duration: "1:15",
-    thumbnail:
-      "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=350&q=80",
-  },
-];
-
 const DocumentationPortal = ({ activeView, setActiveView }) => {
   const [activeTab, setActiveTab] = React.useState(activeView);
 
@@ -193,104 +152,6 @@ const DocumentationPortal = ({ activeView, setActiveView }) => {
   const handleTabChange = (tabId) => {
     setActiveTab(tabId);
     setActiveView(tabId);
-  };
-
-  // Video player state
-  const videoRef = React.useRef(null);
-  const [currentVideoIndex, setCurrentVideoIndex] = React.useState(0);
-  const [isPlaying, setIsPlaying] = React.useState(false);
-  const [currentTime, setCurrentTime] = React.useState(0);
-  const [duration, setDuration] = React.useState(0);
-  const [volume, setVolume] = React.useState(1);
-  const [isMuted, setIsMuted] = React.useState(false);
-  const [progress, setProgress] = React.useState(0);
-
-  // Auto-play next video or loop
-  const currentVideo = TUTORIAL_VIDEOS[currentVideoIndex];
-
-  React.useEffect(() => {
-    // When changing videos, reset player state
-    setIsPlaying(false);
-    setCurrentTime(0);
-    setProgress(0);
-    if (videoRef.current) {
-      videoRef.current.load();
-    }
-  }, [currentVideoIndex]);
-
-  const handlePlayPause = () => {
-    if (!videoRef.current) return;
-    if (isPlaying) {
-      videoRef.current.pause();
-      setIsPlaying(false);
-    } else {
-      videoRef.current
-        .play()
-        .then(() => {
-          setIsPlaying(true);
-        })
-        .catch((err) => console.error("Video play failed:", err));
-    }
-  };
-
-  const handleTimeUpdate = () => {
-    if (!videoRef.current) return;
-    const curr = videoRef.current.currentTime;
-    const dur = videoRef.current.duration || 1;
-    setCurrentTime(curr);
-    setProgress((curr / dur) * 100);
-  };
-
-  const handleLoadedMetadata = () => {
-    if (!videoRef.current) return;
-    setDuration(videoRef.current.duration);
-  };
-
-  const handleSeek = (e) => {
-    if (!videoRef.current || !duration) return;
-    const seekPct = parseFloat(e.target.value);
-    const newTime = (seekPct / 100) * duration;
-    videoRef.current.currentTime = newTime;
-    setProgress(seekPct);
-    setCurrentTime(newTime);
-  };
-
-  const handleVolumeChange = (e) => {
-    if (!videoRef.current) return;
-    const vol = parseFloat(e.target.value);
-    videoRef.current.volume = vol;
-    setVolume(vol);
-    setIsMuted(vol === 0);
-  };
-
-  const handleToggleMute = () => {
-    if (!videoRef.current) return;
-    const nextMute = !isMuted;
-    videoRef.current.muted = nextMute;
-    setIsMuted(nextMute);
-    if (nextMute) {
-      videoRef.current.volume = 0;
-    } else {
-      videoRef.current.volume = volume || 0.5;
-    }
-  };
-
-  const handleFullscreen = () => {
-    if (!videoRef.current) return;
-    if (videoRef.current.requestFullscreen) {
-      videoRef.current.requestFullscreen();
-    } else if (videoRef.current.webkitRequestFullscreen) {
-      videoRef.current.webkitRequestFullscreen(); // Safari
-    } else if (videoRef.current.msRequestFullscreen) {
-      videoRef.current.msRequestFullscreen(); // IE11
-    }
-  };
-
-  const formatTime = (timeInSecs) => {
-    if (isNaN(timeInSecs)) return "0:00";
-    const mins = Math.floor(timeInSecs / 60);
-    const secs = Math.floor(timeInSecs % 60);
-    return `${mins}:${secs < 10 ? "0" : ""}${secs}`;
   };
 
   // Stepper state for Get Started
@@ -331,11 +192,10 @@ const DocumentationPortal = ({ activeView, setActiveView }) => {
       </div>
 
       {/* Premium Horizontal Navigation Tabs */}
-      <div className="flex border-b border-white/5 p-1 bg-[#13141A]/30 rounded-xl max-w-md">
+      <div className="flex flex-col sm:flex-row border-b border-white/5 p-1 bg-[#13141A]/30 rounded-xl max-w-xs gap-1 sm:gap-0">
         {[
           { id: "doc-intro", label: "Introduction" },
           { id: "doc-get-started", label: "Get Started" },
-          { id: "doc-tutorials", label: "Video Tutorials" },
         ].map((tab) => {
           const isSelected = activeTab === tab.id;
           return (
@@ -522,195 +382,6 @@ const DocumentationPortal = ({ activeView, setActiveView }) => {
                       <CheckCircle2 className="size-3.5" />
                     </button>
                   )}
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {activeTab === "doc-tutorials" && (
-          <div className="flex flex-col gap-6 w-full animate-slide-up">
-            <div className="flex flex-col gap-1.5">
-              <span className="text-indigo-400 text-xs font-bold uppercase tracking-widest">
-                Video guides
-              </span>
-              <h3 className="text-2xl sm:text-3xl font-extrabold text-white">
-                AskYourPdf Video Training
-              </h3>
-            </div>
-
-            {/* Video Dashboard */}
-            <div className="grid gap-6 lg:grid-cols-3 items-start mt-2">
-              {/* Video Player Section */}
-              <div className="lg:col-span-2 flex flex-col gap-4">
-                <div className="relative aspect-video rounded-2xl bg-black overflow-hidden border border-white/10 group shadow-2xl">
-                  {/* HTML5 Video Element */}
-                  <video
-                    ref={videoRef}
-                    src={currentVideo.url}
-                    onClick={handlePlayPause}
-                    onTimeUpdate={handleTimeUpdate}
-                    onLoadedMetadata={handleLoadedMetadata}
-                    onPlay={() => setIsPlaying(true)}
-                    onPause={() => setIsPlaying(false)}
-                    className="w-full h-full object-cover"
-                    preload="metadata"
-                  />
-
-                  {/* Glassmorphic Play Overlay Button when paused */}
-                  {!isPlaying && (
-                    <button
-                      onClick={handlePlayPause}
-                      className="absolute inset-0 m-auto size-16 rounded-full bg-white/15 hover:bg-white/20 border border-white/20 flex items-center justify-center text-white backdrop-blur-md cursor-pointer transition-transform scale-100 hover:scale-105 duration-200 shadow-xl z-20"
-                    >
-                      <Play className="size-6 fill-white ml-0.5" />
-                    </button>
-                  )}
-
-                  {/* Custom Glassmorphic Controls Bar */}
-                  <div className="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black/90 via-black/40 to-transparent flex flex-col gap-2 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300 z-10">
-                    {/* Progress Slider */}
-                    <input
-                      type="range"
-                      min={0}
-                      max={100}
-                      value={progress}
-                      onChange={handleSeek}
-                      className="w-full h-1 accent-indigo-500 rounded-lg cursor-pointer bg-white/20 hover:h-1.5 transition-all"
-                    />
-
-                    {/* Button Row */}
-                    <div className="flex items-center justify-between mt-1">
-                      <div className="flex items-center gap-4">
-                        {/* Play/Pause icon */}
-                        <button
-                          onClick={handlePlayPause}
-                          className="text-white hover:text-indigo-400 transition-colors cursor-pointer"
-                        >
-                          {isPlaying ? (
-                            <Pause className="size-5 fill-white" />
-                          ) : (
-                            <Play className="size-5 fill-white" />
-                          )}
-                        </button>
-
-                        {/* Mute/Volume icon */}
-                        <div className="flex items-center gap-2 group/volume relative">
-                          <button
-                            onClick={handleToggleMute}
-                            className="text-white hover:text-indigo-400 transition-colors cursor-pointer"
-                          >
-                            {isMuted ? (
-                              <VolumeX className="size-5" />
-                            ) : (
-                              <Volume2 className="size-5" />
-                            )}
-                          </button>
-                          <input
-                            type="range"
-                            min={0}
-                            max={1}
-                            step={0.1}
-                            value={isMuted ? 0 : volume}
-                            onChange={handleVolumeChange}
-                            className="w-16 h-1 bg-white/20 accent-indigo-500 rounded-lg cursor-pointer opacity-100 scale-100 transition-all"
-                          />
-                        </div>
-
-                        {/* Duration Tracker */}
-                        <div className="text-xs font-mono text-gray-300">
-                          {formatTime(currentTime)} / {formatTime(duration)}
-                        </div>
-                      </div>
-
-                      <div className="flex items-center gap-3">
-                        {/* Fullscreen icon */}
-                        <button
-                          onClick={handleFullscreen}
-                          className="text-white hover:text-indigo-400 transition-colors cursor-pointer"
-                          title="Fullscreen"
-                        >
-                          <Maximize className="size-4.5" />
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Video Info Card */}
-                <div className="bg-[#13141A] border border-white/5 p-6 rounded-2xl flex flex-col gap-2 shadow-xl">
-                  <h4 className="text-white font-bold text-lg">
-                    {currentVideo.title}
-                  </h4>
-                  <p className="text-gray-400 text-sm font-light leading-relaxed">
-                    {currentVideo.description}
-                  </p>
-                </div>
-              </div>
-
-              {/* Video Playlist Sidebar */}
-              <div className="bg-[#13141A]/50 border border-white/5 rounded-2xl p-5 flex flex-col gap-4 shadow-xl">
-                <span className="text-xs text-indigo-400 font-bold uppercase tracking-wider">
-                  Tutorial Playlist
-                </span>
-                <div className="flex flex-col gap-3">
-                  {TUTORIAL_VIDEOS.map((video, idx) => {
-                    const isCurrent = currentVideoIndex === idx;
-                    return (
-                      <button
-                        key={idx}
-                        onClick={() => setCurrentVideoIndex(idx)}
-                        className={`w-full p-2.5 rounded-xl text-left flex items-start gap-3 transition-all cursor-pointer border ${
-                          isCurrent
-                            ? "bg-indigo-600/10 border-indigo-500/30 text-white"
-                            : "bg-transparent border-transparent hover:bg-white/5 text-gray-400 hover:text-white"
-                        }`}
-                      >
-                        {/* Image Thumbnail with play overlay */}
-                        <div className="relative size-16 rounded-lg overflow-hidden shrink-0 bg-black border border-white/10">
-                          <img
-                            src={video.thumbnail}
-                            className="w-full h-full object-cover opacity-80"
-                            alt=""
-                          />
-                          <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
-                            <Video className="size-4 text-white" />
-                          </div>
-                          {isCurrent && (
-                            <div className="absolute bottom-1 right-1 bg-indigo-600 text-[9px] font-bold px-1.5 py-0.5 rounded text-white">
-                              Playing
-                            </div>
-                          )}
-                        </div>
-
-                        {/* Title & Duration */}
-                        <div className="min-w-0 flex-1">
-                          <h5 className="text-xs font-bold leading-snug line-clamp-2">
-                            {video.title}
-                          </h5>
-                          <span className="text-[10px] text-gray-500 block font-mono mt-1">
-                            Duration: {video.duration}
-                          </span>
-                        </div>
-                      </button>
-                    );
-                  })}
-                </div>
-
-                <div className="mt-2 p-4 bg-[#13141A] border border-white/5 rounded-xl text-center flex flex-col gap-2">
-                  <span className="text-white text-xs font-bold">
-                    Have Specific Questions?
-                  </span>
-                  <span className="text-gray-400 text-[11px] leading-relaxed">
-                    Our interactive AI assistant is always ready to explain
-                    concepts instantly inside your chat dashboard.
-                  </span>
-                  <button
-                    onClick={() => setActiveView("chatbot")}
-                    className="mt-2 py-2 px-3 bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 font-bold text-[11px] rounded-lg cursor-pointer hover:bg-indigo-600 hover:text-white transition-all block w-full"
-                  >
-                    Open Personal Chatbot
-                  </button>
                 </div>
               </div>
             </div>
@@ -2097,7 +1768,7 @@ const Chat = () => {
             </Breadcrumb>
           </div>
         </header>
-        <div className="flex flex-1 flex-col gap-4 p-6 bg-[#0B0C11] overflow-y-auto">
+        <div className="flex flex-1 flex-col gap-4 p-4 sm:p-6 bg-[#0B0C11] overflow-y-auto">
           {renderContent()}
         </div>
       </SidebarInset>

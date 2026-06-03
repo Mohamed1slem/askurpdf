@@ -6,6 +6,7 @@ import { FaLock } from "react-icons/fa";
 import documentWidgetVideo from "../assets/document widget.mp4";
 import securedFilesVideo from "../assets/secure files.mp4";
 import dragDropVideo from "../assets/Drag and Drop.mp4";
+import chatHistoryVideo from "../assets/chat history.mp4";
 import SpotlightCard from "./SpotlightCard";
 import { Input } from "@/components/ui/input"
 import VariableProximity from "./VariableProximity";
@@ -24,6 +25,7 @@ import ShinyText from "./ShinyText";
 import FlowingMenu from "./FlowingMenu";
 import Shuffle from "./Shuffle";
 import CommentsSection from "./CommentsSection";
+import BubbleMenu from "./BubbleMenu";
 
 const demoItems = [
   {
@@ -45,7 +47,7 @@ const demoItems = [
 ];
 
 import { Menubar, MenubarMenu, MenubarTrigger } from "@/components/ui/menubar";
-import { ArrowUpRightIcon, Menu, Check, Mail } from "lucide-react";
+import { ArrowUpRightIcon, Menu, Check, Mail, ShieldCheck, EyeOff, Lock, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import TextType from "./TextType";
 import LightRays from "./ui/LightRays";
@@ -60,6 +62,7 @@ import GlareHover from "./GlareHover";
 import SplitText from "./SplitText";
 import RotatingText from "./RotatingText";
 import LetterGlitch from "./LetterGlitch";
+import InteractiveMockup from "./InteractiveMockup";
 import {
   Card,
   CardContent,
@@ -77,30 +80,30 @@ export function TabsDemo() {
     <Tabs
       value={activeTab}
       onValueChange={setActiveTab}
-      className="w-full max-w-4xl mx-auto"
+      className="w-full max-w-4xl mx-auto px-4 sm:px-0"
     >
-      <TabsList className="grid w-full grid-cols-4 bg-transparent rounded-2xl p-1 mb-8">
+      <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 bg-transparent rounded-2xl p-1 mb-8 gap-2 md:gap-0 h-auto">
         <TabsTrigger
           value="overview"
-          className="rounded-xl hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)] data-[state=active]:bg-white/10 data-[state=active]:text-white text-white py-3 text-lg transition-all"
+          className="rounded-xl hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)] data-[state=active]:bg-white/10 data-[state=active]:text-white text-white py-2 md:py-3 text-xs sm:text-sm md:text-lg transition-all h-auto"
         >
           Document Widget
         </TabsTrigger>
         <TabsTrigger
           value="analytics"
-          className="rounded-xl hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)] data-[state=active]:bg-white/10 data-[state=active]:text-white text-white py-3 text-lg transition-all"
+          className="rounded-xl hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)] data-[state=active]:bg-white/10 data-[state=active]:text-white text-white py-2 md:py-3 text-xs sm:text-sm md:text-lg transition-all h-auto"
         >
           Secure Documents
         </TabsTrigger>
         <TabsTrigger
           value="reports"
-          className="rounded-xl hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)] data-[state=active]:bg-white/10 data-[state=active]:text-white text-white py-3 text-lg transition-all"
+          className="rounded-xl hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)] data-[state=active]:bg-white/10 data-[state=active]:text-white text-white py-2 md:py-3 text-xs sm:text-sm md:text-lg transition-all h-auto"
         >
           Drag & Drop
         </TabsTrigger>
         <TabsTrigger
           value="settings"
-          className="rounded-xl hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)] data-[state=active]:bg-white/10 data-[state=active]:text-white text-white py-3 text-lg transition-all"
+          className="rounded-xl hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)] data-[state=active]:bg-white/10 data-[state=active]:text-white text-white py-2 md:py-3 text-xs sm:text-sm md:text-lg transition-all h-auto"
         >
           Chats History
         </TabsTrigger>
@@ -120,7 +123,7 @@ export function TabsDemo() {
             loop
             muted
             playsInline
-            className="w-full h-[500px] object-cover pointer-events-none"
+            className="w-full h-[300px] md:h-[500px] object-cover pointer-events-none"
           />
         )}
       </TabsContent>
@@ -139,7 +142,7 @@ export function TabsDemo() {
             loop
             muted
             playsInline
-            className="w-full h-[500px] object-cover pointer-events-none"
+            className="w-full h-[300px] md:h-[500px] object-cover pointer-events-none"
           />
         )}
       </TabsContent>
@@ -158,7 +161,7 @@ export function TabsDemo() {
             loop
             muted
             playsInline
-            className="w-full h-[500px] object-cover pointer-events-none"
+            className="w-full h-[300px] md:h-[500px] object-cover pointer-events-none"
           />
         )}
       </TabsContent>
@@ -177,7 +180,7 @@ export function TabsDemo() {
             loop
             muted
             playsInline
-            className="w-full h-[500px] object-cover pointer-events-none"
+            className="w-full h-[300px] md:h-[500px] object-cover pointer-events-none"
           />
         )}
       </TabsContent>
@@ -240,7 +243,7 @@ export function AuthButtons() {
 
 export function MenubarDemo() {
   return (
-    <Menubar className="border-none bg-transparent shadow-none gap-2 sm:gap-6">
+    <Menubar className="border-none bg-transparent shadow-none gap-2 sm:gap-6 flex-wrap justify-center h-auto py-2">
       <MenubarMenu>
         <MenubarTrigger
           onClick={() =>
@@ -408,12 +411,12 @@ const QASection = () => {
                 ref={(el) => {
                   if (el) questionRefs.current[index] = el;
                 }}
-                className="w-full max-w-[70%] bg-gradient-to-br from-blue-600 to-indigo-700 text-white rounded-3xl rounded-tr-sm px-6 py-5 shadow-xl"
+                className="w-full max-w-[90%] md:max-w-[70%] bg-gradient-to-br from-blue-600 to-indigo-700 text-white rounded-3xl rounded-tr-sm px-6 py-5 shadow-xl"
               >
                 <p className="text-[11px] text-blue-200 mb-2 font-bold tracking-widest uppercase opacity-80">
                   You
                 </p>
-                <p className="text-lg md:text-xl font-medium leading-relaxed">
+                <p className="text-base sm:text-lg md:text-xl font-medium leading-relaxed">
                   {item.q}
                 </p>
               </div>
@@ -424,13 +427,13 @@ const QASection = () => {
                 ref={(el) => {
                   if (el) answerRefs.current[index] = el;
                 }}
-                className="w-full max-w-[70%] bg-[#13141A] border border-white/10 text-gray-200 rounded-3xl rounded-tl-sm px-6 py-5 shadow-xl"
+                className="w-full max-w-[90%] md:max-w-[70%] bg-[#13141A] border border-white/10 text-gray-200 rounded-3xl rounded-tl-sm px-6 py-5 shadow-xl"
               >
                 <p className="text-[11px] text-purple-400 mb-2 font-bold tracking-widest uppercase flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-purple-500 animate-pulse inline-block" />
                   AskYourPDF AI
                 </p>
-                <p className="text-lg md:text-xl leading-relaxed font-light">
+                <p className="text-base sm:text-lg md:text-xl leading-relaxed font-light">
                   {item.a}
                 </p>
               </div>
@@ -450,78 +453,164 @@ const Home = () => {
   const tabsSectionRef = useRef(null);
   const containerRef = useRef(null);
 
+  const mobileMenuItems = [
+    {
+      label: 'home',
+      href: '#',
+      ariaLabel: 'Home',
+      rotation: -8,
+      hoverStyles: { bgColor: '#3b82f6', textColor: '#ffffff' },
+      onClick: () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    },
+    {
+      label: 'features',
+      href: '#use-our-tool-section',
+      ariaLabel: 'Features',
+      rotation: 8,
+      hoverStyles: { bgColor: '#10b981', textColor: '#ffffff' },
+      onClick: () => {
+        document.getElementById("use-our-tool-section")?.scrollIntoView({ behavior: "smooth" });
+      }
+    },
+    {
+      label: 'pricing',
+      href: '#pricing-section',
+      ariaLabel: 'Pricing',
+      rotation: 8,
+      hoverStyles: { bgColor: '#f59e0b', textColor: '#ffffff' },
+      onClick: () => {
+        document.getElementById("pricing-section")?.scrollIntoView({ behavior: "smooth" });
+      }
+    },
+    {
+      label: 'about',
+      href: '#about-us-section',
+      ariaLabel: 'About Us',
+      rotation: 8,
+      hoverStyles: { bgColor: '#ef4444', textColor: '#ffffff' },
+      onClick: () => {
+        document.getElementById("about-us-section")?.scrollIntoView({ behavior: "smooth" });
+      }
+    },
+    {
+      label: 'chat',
+      href: '/chat',
+      ariaLabel: 'Chat Session',
+      rotation: -8,
+      hoverStyles: { bgColor: '#8b5cf6', textColor: '#ffffff' },
+      onClick: () => {
+        navigate(token ? "/chat" : "/login");
+      }
+    }
+  ];
+
   useEffect(() => {
     let ctx = gsap.context(() => {
       const pinSection = horizontalSectionRef.current;
       const wrapper = horizontalWrapperRef.current;
+      
+      const isMobile = window.innerWidth < 768;
 
       if (pinSection && wrapper) {
-        const getScrollAmount = () => wrapper.scrollWidth - window.innerWidth;
+        if (!isMobile) {
+          const getScrollAmount = () => wrapper.scrollWidth - window.innerWidth;
 
-        const horizontalTween = gsap.to(wrapper, {
-          x: () => -getScrollAmount(),
-          ease: "none",
-          scrollTrigger: {
-            trigger: pinSection,
-            start: "top top",
-            end: () => `+=${getScrollAmount()}`,
-            pin: true,
-            scrub: 1,
-            snap: {
-              snapTo: (value) => {
-                if (value > 0.95) return value;
-                return Math.round(value * 3) / 3;
+          const horizontalTween = gsap.to(wrapper, {
+            x: () => -getScrollAmount(),
+            ease: "none",
+            scrollTrigger: {
+              trigger: pinSection,
+              start: "top top",
+              end: () => `+=${getScrollAmount()}`,
+              pin: true,
+              scrub: 1,
+              snap: {
+                snapTo: (value) => {
+                  if (value > 0.95) return value;
+                  return Math.round(value * 3) / 3;
+                },
+                duration: { min: 0.2, max: 0.5 },
+                delay: 0.05,
+                ease: "power1.inOut",
               },
-              duration: { min: 0.2, max: 0.5 },
-              delay: 0.05,
-              ease: "power1.inOut",
+              invalidateOnRefresh: true,
             },
-            invalidateOnRefresh: true,
-          },
-        });
+          });
 
-        gsap.from(".horizontal-anim-1", {
-          opacity: 0,
-          scale: 0.2,
-          filter: "blur(20px)",
-          duration: 1.2,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: ".horizontal-anim-1",
-            containerAnimation: horizontalTween,
-            start: "left 85%",
-            toggleActions: "play none none reverse",
-          },
-        });
+          gsap.from(".horizontal-anim-1", {
+            opacity: 0,
+            scale: 0.2,
+            filter: "blur(20px)",
+            duration: 1.2,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: ".horizontal-anim-1",
+              containerAnimation: horizontalTween,
+              start: "left 85%",
+              toggleActions: "play none none reverse",
+            },
+          });
 
-        gsap.from(".horizontal-anim-2", {
-          opacity: 0,
-          y: 150,
-          rotationX: -90,
-          transformOrigin: "bottom",
-          duration: 1.5,
-          ease: "back.out(1.5)",
-          scrollTrigger: {
-            trigger: ".horizontal-anim-2",
-            containerAnimation: horizontalTween,
-            start: "left 85%",
-            toggleActions: "play none none reverse",
-          },
-        });
+          gsap.from(".horizontal-anim-2", {
+            opacity: 0,
+            y: 150,
+            rotationX: -90,
+            transformOrigin: "bottom",
+            duration: 1.5,
+            ease: "back.out(1.5)",
+            scrollTrigger: {
+              trigger: ".horizontal-anim-2",
+              containerAnimation: horizontalTween,
+              start: "left 85%",
+              toggleActions: "play none none reverse",
+            },
+          });
 
-        gsap.from(".horizontal-anim-3", {
-          opacity: 0,
-          scale: 0,
-          rotation: 15,
-          duration: 1.8,
-          ease: "elastic.out(1, 0.4)",
-          scrollTrigger: {
-            trigger: ".horizontal-anim-3",
-            containerAnimation: horizontalTween,
-            start: "left 85%",
-            toggleActions: "play none none reverse",
-          },
-        });
+          gsap.from(".horizontal-anim-3", {
+            opacity: 0,
+            scale: 0,
+            rotation: 15,
+            duration: 1.8,
+            ease: "elastic.out(1, 0.4)",
+            scrollTrigger: {
+              trigger: ".horizontal-anim-3",
+              containerAnimation: horizontalTween,
+              start: "left 85%",
+              toggleActions: "play none none reverse",
+            },
+          });
+        } else {
+          // Mobile animations (vertical scroll)
+          gsap.from(".horizontal-anim-1", {
+            opacity: 0,
+            y: 50,
+            duration: 1,
+            scrollTrigger: {
+              trigger: ".horizontal-anim-1",
+              start: "top 80%",
+            },
+          });
+          gsap.from(".horizontal-anim-2", {
+            opacity: 0,
+            y: 50,
+            duration: 1,
+            scrollTrigger: {
+              trigger: ".horizontal-anim-2",
+              start: "top 80%",
+            },
+          });
+          gsap.from(".horizontal-anim-3", {
+            opacity: 0,
+            y: 50,
+            duration: 1,
+            scrollTrigger: {
+              trigger: ".horizontal-anim-3",
+              start: "top 80%",
+            },
+          });
+        }
       }
     });
 
@@ -544,19 +633,19 @@ const Home = () => {
       duration={400}
     >
       <div className="w-full bg-[#0B0C11] overflow-x-hidden">
-        {/* Global Navigation Wrapper */}
-        <div className="absolute top-0 left-0 w-full z-[100] pointer-events-auto">
-          <nav className="flex items-center justify-between w-full p-4 px-8">
-            <div className="flex justify-start text-white w-[250px]">
+        {/* Global Navigation Wrapper - Desktop Only */}
+        <div className="hidden lg:block absolute top-0 left-0 w-full z-[100] pointer-events-auto">
+          <nav className="flex items-center justify-between w-full p-4 px-4 sm:px-8">
+            <div className="flex justify-start text-white w-auto lg:w-[250px]">
               <Link
                 to="/"
-                className="whitespace-nowrap flex items-center transition-transform hover:scale-105 text-white font-bold text-2xl md:text-3xl tracking-tight drop-shadow-sm"
+                className="whitespace-nowrap flex items-center transition-transform hover:scale-105 text-white font-bold text-xl sm:text-2xl lg:text-3xl tracking-tight drop-shadow-sm"
               >
                 AskYourPdf
               </Link>
             </div>
 
-            <div className="flex justify-center flex-1 mt-3">
+            <div className="hidden lg:flex justify-center flex-1 mt-3">
               <div className="whitespace-nowrap">
                 <MenubarDemo />
               </div>
@@ -569,6 +658,27 @@ const Home = () => {
             </div>
           </nav>
         </div>
+
+        {/* Mobile/Tablet Navigation - BubbleMenu */}
+        <BubbleMenu
+          className="lg:hidden"
+          logo={
+            <Link
+              to="/"
+              className="text-black font-extrabold text-lg sm:text-xl tracking-tight transition-transform hover:scale-105"
+            >
+              AskYourPdf
+            </Link>
+          }
+          items={mobileMenuItems}
+          menuAriaLabel="Toggle navigation"
+          menuBg="#ffffff"
+          menuContentColor="#111111"
+          useFixedPosition={true}
+          animationEase="back.out(1.5)"
+          animationDuration={0.5}
+          staggerDelay={0.12}
+        />
 
         {/* Hero Section */}
         <div className="relative min-h-screen w-full overflow-hidden flex flex-col">
@@ -612,8 +722,8 @@ const Home = () => {
             <div className="h-[80px] w-full shrink-0"></div>
             <main className="flex-1 flex flex-col items-center justify-center pt-32 pb-20">
               <ScrollFloat
-                containerClassName="my-5"
-                textClassName="text-white text-4xl sm:text-5xl md:text-6xl font-bold max-w-[950px] text-center leading-tight tracking-tight drop-shadow-sm"
+                containerClassName="my-5 px-4"
+                textClassName="text-white text-3xl sm:text-5xl md:text-6xl font-bold max-w-[950px] text-center leading-tight tracking-tight drop-shadow-sm"
                 animationDuration={1.2}
                 ease="back.out(1.4)"
                 stagger={0.025}
@@ -624,8 +734,8 @@ const Home = () => {
                 Extract Accurate Insights from Your PDFs Instantly
               </ScrollFloat>
 
-              <div className="flex items-center gap-4 mt-8">
-                <div>
+              <div className="flex flex-col sm:flex-row items-center gap-4 mt-8 px-4">
+                <div className="w-full sm:w-auto flex justify-center">
                   <GlareHover
                     glareColor="#ffffff"
                     glareOpacity={0.3}
@@ -677,84 +787,89 @@ const Home = () => {
         {/* Horizontal Scroll Section */}
         <div
           ref={horizontalSectionRef}
-          className="h-screen w-full bg-[#0B0C11] overflow-hidden relative z-10 flex items-center"
+          className="min-h-screen md:h-screen w-full bg-[#0B0C11] overflow-x-hidden md:overflow-hidden relative z-10 flex items-center py-20 md:py-0"
         >
-          <div ref={horizontalWrapperRef} className="flex items-center h-full">
-            <div className="flex flex-col justify-center gap-4 w-screen h-full flex-shrink-0 pl-[5vw] md:pl-[10vw]">
-              <AnimatedContent
-                distance={150}
-                direction="vertical"
-                reverse={false}
-                duration={1.1}
-                ease="power3.out"
-                initialOpacity={0}
-                animateOpacity={true}
-                scale={1}
-                threshold={0.1}
-                delay={0.5}
-              >
-                <div className="w-fit bg-blue-500 px-[40px] py-[15px] border border-white/20 rounded-2xl shadow-2xl backdrop-blur-md flex items-center justify-center">
-                  <span className="text-3xl md:text-5xl lg:text-3xl text-white font-bold whitespace-nowrap">
-                    Ask Anything,
-                  </span>
-                </div>
-              </AnimatedContent>
-              <AnimatedContent
-                distance={150}
-                direction="vertical"
-                reverse={false}
-                duration={1.1}
-                ease="power3.out"
-                initialOpacity={0}
-                animateOpacity={true}
-                scale={1}
-                threshold={0.1}
-                delay={0.7}
-              >
-                <div className="w-fit ml-12 md:ml-24 p-[50px] bg-blue-500 py-[15px] border border-white/20 rounded-2xl shadow-2xl backdrop-blur-md flex items-center justify-center">
-                  <div className="text-3xl md:text-5xl lg:text-3xl text-white font-bold whitespace-nowrap flex items-center gap-3">
-                    that's right
-                    <RotatingText
-                      texts={["anything", "WhatEver"]}
-                      mainClassName="px-2 sm:px-2 md:px-3 bg-orange-100 text-black overflow-hidden py-0.5 sm:py-1 md:py-2 justify-center rounded-lg"
-                      staggerFrom="last"
-                      initial={{ y: "100%" }}
-                      animate={{ y: 0 }}
-                      exit={{ y: "-120%" }}
-                      staggerDuration={0.025}
-                      splitLevelClassName="overflow-hidden pb-0.5 sm:pb-1 md:pb-1"
-                      transition={{
-                        type: "spring",
-                        damping: 30,
-                        stiffness: 400,
-                      }}
-                      rotationInterval={2000}
-                      splitBy="characters"
-                      auto={true}
-                      loop={true}
-                    />
+          <div ref={horizontalWrapperRef} className="flex flex-col md:flex-row items-center h-full w-full gap-24 md:gap-0">
+            <div className="w-full md:w-screen h-auto md:h-full flex-shrink-0 flex flex-col md:flex-row items-center justify-between px-4 sm:px-8 md:px-[10vw] gap-12 md:gap-8">
+              <div className="flex flex-col justify-center gap-4 w-full md:w-[48%]">
+                <AnimatedContent
+                  distance={150}
+                  direction="vertical"
+                  reverse={false}
+                  duration={1.1}
+                  ease="power3.out"
+                  initialOpacity={0}
+                  animateOpacity={true}
+                  scale={1}
+                  threshold={0.1}
+                  delay={0.5}
+                >
+                  <div className="w-fit bg-blue-500 px-[30px] sm:px-[40px] py-[10px] sm:py-[15px] border border-white/20 rounded-2xl shadow-2xl backdrop-blur-md flex items-center justify-center mx-auto md:mx-0">
+                    <span className="text-2xl sm:text-3xl md:text-5xl lg:text-3xl text-white font-bold whitespace-nowrap">
+                      Ask Anything,
+                    </span>
                   </div>
-                </div>
-              </AnimatedContent>
+                </AnimatedContent>
+                <AnimatedContent
+                  distance={150}
+                  direction="vertical"
+                  reverse={false}
+                  duration={1.1}
+                  ease="power3.out"
+                  initialOpacity={0}
+                  animateOpacity={true}
+                  scale={1}
+                  threshold={0.1}
+                  delay={0.7}
+                >
+                  <div className="w-fit ml-0 md:ml-12 lg:ml-24 p-[30px] sm:p-[50px] bg-blue-500 py-[10px] sm:py-[15px] border border-white/20 rounded-2xl shadow-2xl backdrop-blur-md flex items-center justify-center mx-auto md:mx-0 mt-4 md:mt-0">
+                    <div className="text-xl sm:text-3xl md:text-5xl lg:text-3xl text-white font-bold whitespace-nowrap flex items-center gap-2 sm:gap-3">
+                      that's right
+                      <RotatingText
+                        texts={["anything", "WhatEver"]}
+                        mainClassName="px-2 sm:px-2 md:px-3 bg-orange-100 text-black overflow-hidden py-0.5 sm:py-1 md:py-2 justify-center rounded-lg"
+                        staggerFrom="last"
+                        initial={{ y: "100%" }}
+                        animate={{ y: 0 }}
+                        exit={{ y: "-120%" }}
+                        staggerDuration={0.025}
+                        splitLevelClassName="overflow-hidden pb-0.5 sm:pb-1 md:pb-1"
+                        transition={{
+                          type: "spring",
+                          damping: 30,
+                          stiffness: 400,
+                        }}
+                        rotationInterval={2000}
+                        splitBy="characters"
+                        auto={true}
+                        loop={true}
+                      />
+                    </div>
+                  </div>
+                </AnimatedContent>
+              </div>
+              <div className="w-full md:w-[48%] flex justify-center items-center">
+                <InteractiveMockup />
+              </div>
             </div>
 
-            <div className="w-screen h-full flex flex-col justify-center items-center flex-shrink-0 px-8 text-center">
-              <div className="horizontal-anim-1 text-5xl md:text-7xl lg:text-[7rem] text-gray-300 font-semibold whitespace-normal max-w-6xl">
+            <div className="w-full md:w-screen h-auto md:h-full flex flex-col justify-center items-center flex-shrink-0 px-4 sm:px-8 text-center">
+              <div className="horizontal-anim-1 text-4xl sm:text-5xl md:text-7xl lg:text-[7rem] text-gray-300 font-semibold whitespace-normal max-w-6xl leading-tight">
                 Are you exhausted of reading long PDFs?
               </div>
             </div>
 
             <div
-              className="w-screen h-full flex flex-col justify-center items-center flex-shrink-0 px-8 text-center"
+              className="w-full md:w-screen h-auto md:h-full flex flex-col justify-center items-center flex-shrink-0 px-4 sm:px-8 text-center"
               style={{ perspective: "1000px" }}
             >
-              <div className="horizontal-anim-2 text-5xl md:text-7xl lg:text-[7rem] text-gray-300 font-semibold whitespace-normal max-w-6xl">
+              <div className="horizontal-anim-2 text-4xl sm:text-5xl md:text-7xl lg:text-[7rem] text-gray-300 font-semibold whitespace-normal max-w-6xl leading-tight">
                 Getting distracted through all those files?
               </div>
             </div>
 
-            <div className="w-screen h-full flex flex-col justify-center items-center flex-shrink-0 px-8 text-center">
-              <div className="horizontal-anim-3 text-6xl md:text-8xl lg:text-[9rem] text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 font-bold drop-shadow-lg pb-4 whitespace-normal max-w-6xl">
+            <div className="w-full md:w-screen h-auto md:h-full flex flex-col justify-center items-center flex-shrink-0 px-4 sm:px-8 text-center">
+              <div className="horizontal-anim-3 text-5xl sm:text-6xl md:text-8xl lg:text-[9rem] text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 font-bold drop-shadow-lg pb-4 whitespace-normal max-w-6xl leading-tight">
                 AskYourPDFs will help you.
               </div>
             </div>
@@ -765,9 +880,9 @@ const Home = () => {
         <div
           id="use-our-tool-section"
           ref={tabsSectionRef}
-          className="relative z-20 w-full min-h-screen bg-[#0B0C11] flex flex-col items-center justify-center p-4 sm:p-8 gap-12"
+          className="relative z-20 w-full min-h-[80vh] md:min-h-screen bg-[#0B0C11] flex flex-col items-center justify-center p-4 sm:p-8 gap-12"
         >
-          <h1 className="text-6xl md:text-8xl lg:text-[9rem] text-center text-white font-bold drop-shadow-lg whitespace-normal max-w-6xl w-full">
+          <h1 className="text-4xl sm:text-6xl md:text-8xl lg:text-[9rem] text-center text-white font-bold drop-shadow-lg whitespace-normal max-w-6xl w-full">
             <BlurText
               text="Use Our Tool Now"
               delay={200}
@@ -781,9 +896,9 @@ const Home = () => {
         </div>
 
         {/* QA Section */}
-        <div className="w-full flex justify-center items-center flex-col bg-[#0B0C11]">
+        <div className="w-full flex justify-center items-center flex-col bg-[#0B0C11] px-4 overflow-hidden">
           <ShinyText
-            className="text-6xl md:text-8xl lg:text-[50px] text-white font-extrabold text-center tracking-tight mb-12"
+            className="text-4xl sm:text-6xl md:text-8xl lg:text-[50px] text-white font-extrabold text-center tracking-tight mb-12"
             text="Ask. Understand. Move Faster."
             speed={2}
             delay={0}
@@ -900,17 +1015,17 @@ const Home = () => {
         {/* Pricing Section */}
         <section
           id="pricing-section"
-          className="w-full bg-[#0B0C11] py-24 px-4 sm:px-8 md:px-16 lg:px-24"
+          className="w-full bg-[#0B0C11] py-16 md:py-24 px-4 sm:px-8 md:px-16 lg:px-24"
         >
           <div className="max-w-6xl mx-auto flex flex-col items-center">
-            <div className="text-center mb-16">
+            <div className="text-center mb-12 md:mb-16">
               <h2 
-                className="text-7xl md:text-8xl lg:text-[7rem] font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-400 tracking-tighter mb-4 pb-2"
+                className="text-5xl sm:text-6xl md:text-8xl lg:text-[7rem] font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-400 tracking-tighter mb-4 pb-2"
                 style={{ fontFamily: '"Space Grotesk", sans-serif' }}
               >
                 Flexible Pricing Plans
               </h2>
-              <p className="text-gray-400 mt-2 text-lg md:text-xl max-w-2xl font-light">
+              <p className="text-gray-400 mt-2 text-base sm:text-lg md:text-xl max-w-2xl mx-auto font-light">
                 Choose the perfect plan to supercharge your PDF research, chats,
                 and analytical summaries.
               </p>
@@ -1103,7 +1218,7 @@ const Home = () => {
         <CommentsSection />
 
         {/* Secure Section */}
-        <section id="secure-section" className="relative mx-auto w-full max-w-[1100px] h-[60vh] min-h-[450px] my-16 rounded-3xl overflow-hidden flex items-center justify-center bg-black border border-white/10 shadow-[0_0_50px_rgba(255,255,255,0.03)]">
+        <section id="secure-section" className="relative mx-4 sm:mx-auto w-full max-w-[1100px] py-16 md:py-24 min-h-[500px] md:min-h-[650px] my-12 md:my-16 rounded-3xl overflow-hidden flex items-center justify-center bg-black border border-white/10 shadow-[0_0_50px_rgba(255,255,255,0.03)]">
           {/* Background LetterGlitch */}
           <div className="absolute inset-0 z-0 opacity-30">
             <LetterGlitch
@@ -1116,14 +1231,83 @@ const Home = () => {
 
           {/* Content overlay */}
           <div className="relative z-10 text-center px-6 max-w-4xl mx-auto flex flex-col items-center justify-center">
-            <FaLock className="text-6xl text-white mb-6" />
-            <h2 className="text-white text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight mb-6 uppercase bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-400">
+            <FaLock className="text-5xl md:text-6xl text-white mb-4 md:mb-6" />
+            <h2 className="text-white text-3xl sm:text-4xl md:text-7xl font-extrabold tracking-tight mb-4 md:mb-6 uppercase bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-400">
               Your Data is Safe with Us.
             </h2>
-            <p className="text-gray-400 w-[700px] mt-10 pt-5 text-lg md:text-xl max-w-2xl mx-auto font-light leading-relaxed">
+            <p className="text-gray-400 w-full max-w-[700px] mt-4 md:mt-6 pt-2 text-base sm:text-lg md:text-xl mx-auto font-light leading-relaxed">
               Every document is encrypted, completely isolated, and processed
               with maximum security. Your privacy is our most commitment.
             </p>
+
+            {/* Security Badges Grid */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mt-12 w-full max-w-3xl">
+              <div className="flex flex-col items-center p-5 bg-white/[0.02] border border-white/5 rounded-2xl backdrop-blur-md transition-all hover:bg-white/[0.05] hover:border-white/10 group cursor-default">
+                <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mb-3 group-hover:scale-110 transition-all duration-300">
+                  <ShieldCheck className="w-6 h-6 text-emerald-400" />
+                </div>
+                <span className="text-xs sm:text-sm font-semibold text-white">AES-256 Encryption</span>
+                <span className="text-[10px] text-gray-500 mt-1">Bank-grade security</span>
+              </div>
+
+              <div className="flex flex-col items-center p-5 bg-white/[0.02] border border-white/5 rounded-2xl backdrop-blur-md transition-all hover:bg-white/[0.05] hover:border-white/10 group cursor-default">
+                <div className="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mb-3 group-hover:scale-110 transition-all duration-300">
+                  <EyeOff className="w-6 h-6 text-blue-400" />
+                </div>
+                <span className="text-xs sm:text-sm font-semibold text-white">Isolated Context</span>
+                <span className="text-[10px] text-gray-500 mt-1">No model training</span>
+              </div>
+
+              <div className="flex flex-col items-center p-5 bg-white/[0.02] border border-white/5 rounded-2xl backdrop-blur-md transition-all hover:bg-white/[0.05] hover:border-white/10 group cursor-default">
+                <div className="w-12 h-12 rounded-xl bg-violet-500/10 border border-violet-500/20 flex items-center justify-center mb-3 group-hover:scale-110 transition-all duration-300">
+                  <Lock className="w-6 h-6 text-violet-400" />
+                </div>
+                <span className="text-xs sm:text-sm font-semibold text-white">GDPR Compliant</span>
+                <span className="text-[10px] text-gray-500 mt-1">Strict data standards</span>
+              </div>
+
+              <div className="flex flex-col items-center p-5 bg-white/[0.02] border border-white/5 rounded-2xl backdrop-blur-md transition-all hover:bg-white/[0.05] hover:border-white/10 group cursor-default">
+                <div className="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center mb-3 group-hover:scale-110 transition-all duration-300">
+                  <Trash2 className="w-6 h-6 text-amber-400" />
+                </div>
+                <span className="text-xs sm:text-sm font-semibold text-white">Instant Deletion</span>
+                <span className="text-[10px] text-gray-500 mt-1">Remove files anytime</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Final CTA Section */}
+        <section className="w-full bg-[#0B0C11] py-24 md:py-36 px-4 sm:px-8 md:px-16 lg:px-24 border-t border-white/5 relative overflow-hidden">
+          {/* Subtle background gradient glow */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-indigo-500/10 rounded-full blur-[130px] pointer-events-none" />
+          
+          <div className="max-w-4xl mx-auto text-center relative z-10 flex flex-col items-center">
+            <h2 
+              className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-tight mb-10"
+              style={{ fontFamily: '"Space Grotesk", sans-serif' }}
+            >
+              Ready to Supercharge Your PDF Research?
+            </h2>
+            <p 
+              className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-4 font-light leading-relaxed"
+              style={{ fontFamily: '"Outfit", sans-serif' }}
+            >
+              Join thousands of professionals, students, and researchers
+            </p>
+            <p 
+              className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-16 font-light leading-relaxed"
+              style={{ fontFamily: '"Outfit", sans-serif' }}
+            >
+              who are turning static documents into interactive conversations.
+            </p>
+            <Button
+              asChild
+              className="mt-8 py-7 px-10 text-xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white rounded-2xl shadow-[0_0_35px_rgba(99,102,241,0.35)] transition-all hover:scale-105 duration-300 cursor-pointer"
+              style={{ fontFamily: '"Outfit", sans-serif' }}
+            >
+              <Link to="/login">Get Started for Free</Link>
+            </Button>
           </div>
         </section>
 

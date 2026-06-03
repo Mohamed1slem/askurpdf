@@ -33,7 +33,7 @@ export function SignupForm({
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card className="border-white/10 bg-[#13141A] text-white shadow-[0_0_40px_rgba(0,0,0,0.5)] backdrop-blur-md p-6 rounded-3xl">
         <CardHeader className="space-y-3 pb-6">
-          <CardTitle className="text-4xl font-bold tracking-tight text-white text-center">
+          <CardTitle className="text-2xl sm:text-4xl font-bold tracking-tight text-white text-center">
             Create an account
           </CardTitle>
           <CardDescription className="text-gray-400 text-center text-base">
@@ -49,7 +49,7 @@ export function SignupForm({
             )}
             <FieldGroup>
               <Field>
-                <FieldLabel htmlFor="username" className="text-gray-300 text-lg">Username</FieldLabel>
+                <FieldLabel htmlFor="username" className="text-gray-300 text-base sm:text-lg">Username</FieldLabel>
                 <Input
                   id="username"
                   type="text"
@@ -59,11 +59,11 @@ export function SignupForm({
                   required
                   autoFocus
                   disabled={isLoading}
-                  className="bg-[#0B0C11] border-white/10 text-white placeholder-gray-500 focus-visible:ring-indigo-500 py-6 text-lg rounded-xl"
+                  className="bg-[#0B0C11] border-white/10 text-white placeholder-gray-500 focus-visible:ring-indigo-500 py-4 sm:py-6 text-base sm:text-lg rounded-xl"
                 />
               </Field>
               <Field>
-                <FieldLabel htmlFor="email" className="text-gray-300 text-lg">Email Address</FieldLabel>
+                <FieldLabel htmlFor="email" className="text-gray-300 text-base sm:text-lg">Email Address</FieldLabel>
                 <Input
                   id="email"
                   type="email"
@@ -72,11 +72,11 @@ export function SignupForm({
                   onChange={onChangeEmail}
                   required
                   disabled={isLoading}
-                  className="bg-[#0B0C11] border-white/10 text-white placeholder-gray-500 focus-visible:ring-indigo-500 py-6 text-lg rounded-xl"
+                  className="bg-[#0B0C11] border-white/10 text-white placeholder-gray-500 focus-visible:ring-indigo-500 py-4 sm:py-6 text-base sm:text-lg rounded-xl"
                 />
               </Field>
               <Field>
-                <FieldLabel htmlFor="password" className="text-gray-300 text-lg">Password</FieldLabel>
+                <FieldLabel htmlFor="password" className="text-gray-300 text-base sm:text-lg">Password</FieldLabel>
                 <Input
                   id="password"
                   type="password"
@@ -85,14 +85,14 @@ export function SignupForm({
                   onChange={onChangePwd}
                   required
                   disabled={isLoading}
-                  className="bg-[#0B0C11] border-white/10 text-white placeholder-gray-500 focus-visible:ring-indigo-500 py-6 text-lg rounded-xl"
+                  className="bg-[#0B0C11] border-white/10 text-white placeholder-gray-500 focus-visible:ring-indigo-500 py-4 sm:py-6 text-base sm:text-lg rounded-xl"
                 />
               </Field>
               <Field className="pt-4">
                 <Button
                   type="submit"
                   disabled={isLoading}
-                  className="w-full cursor-pointer bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-medium py-7 text-xl rounded-xl shadow-lg transition-all duration-300 disabled:opacity-50"
+                  className="w-full cursor-pointer bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-medium py-5 sm:py-7 text-lg sm:text-xl rounded-xl shadow-lg transition-all duration-300 disabled:opacity-50"
                 >
                   {isLoading ? "Creating Account..." : "Create Account"}
                 </Button>

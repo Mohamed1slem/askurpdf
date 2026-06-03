@@ -40,6 +40,7 @@ const Chatbot = ({
   const [isDragging, setIsDragging] = useState(false);
   const [showCreateView, setShowCreateView] = useState(false);
   const [widgetTab, setWidgetTab] = useState('preview');
+  const [mobileActiveTab, setMobileActiveTab] = useState('chat'); // 'chat' or 'document'
   const token = useSelector(selectCurrentToken);
 
   const fetchChatHistory = async (chatId) => {
@@ -295,9 +296,38 @@ const Chatbot = ({
           </div>
         </div>
       ) : (
-        <div className="flex-1 flex flex-col lg:flex-row gap-6 overflow-hidden">
-          {/* Left Panel: Document Preview Widget */}
-          <div className="w-full lg:w-5/12 bg-[#13141A] border border-white/5 rounded-2xl flex flex-col overflow-hidden shadow-xl shrink-0">
+        <div className="flex-1 flex flex-col gap-4 lg:gap-6 overflow-hidden">
+          {/* Mobile Tab Toggle Bar (Visible only on mobile/tablet below lg) */}
+          <div className="lg:hidden flex border border-white/5 p-1 bg-white/[0.01] rounded-xl shrink-0">
+            <button
+              onClick={() => setMobileActiveTab('chat')}
+              type="button"
+              className={`flex-1 py-2 text-sm font-semibold rounded-lg transition-all cursor-pointer flex items-center justify-center gap-1.5 ${
+                mobileActiveTab === 'chat'
+                  ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/25'
+                  : 'text-gray-400 hover:text-white hover:bg-white/5'
+              }`}
+            >
+              <MessageSquare className="size-4" />
+              <span>Chat Room</span>
+            </button>
+            <button
+              onClick={() => setMobileActiveTab('document')}
+              type="button"
+              className={`flex-1 py-2 text-sm font-semibold rounded-lg transition-all cursor-pointer flex items-center justify-center gap-1.5 ${
+                mobileActiveTab === 'document'
+                  ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/25'
+                  : 'text-gray-400 hover:text-white hover:bg-white/5'
+              }`}
+            >
+              <FileText className="size-4" />
+              <span>Document View</span>
+            </button>
+          </div>
+
+          <div className="flex-1 flex flex-col lg:flex-row gap-6 overflow-hidden">
+            {/* Left Panel: Document Preview Widget */}
+            <div className={`w-full lg:w-5/12 bg-[#13141A] border border-white/5 rounded-2xl flex-col overflow-hidden shadow-xl shrink-0 ${mobileActiveTab === 'document' ? 'flex' : 'hidden lg:flex'}`}>
             {/* Header Bar */}
             <div className="flex items-center justify-between px-6 py-4 border-b border-white/5 bg-white/[0.01]">
               <div className="flex items-center gap-2.5 min-w-0 pr-2">
@@ -421,8 +451,8 @@ const Chatbot = ({
             </div>
           </div>
 
-          {/* Right Panel: Active Chat Thread */}
-          <div className="flex-1 bg-[#13141A] border border-white/5 rounded-2xl flex flex-col overflow-hidden shadow-xl min-w-[320px]">
+            {/* Right Panel: Active Chat Thread */}
+            <div className={`flex-1 bg-[#13141A] border border-white/5 rounded-2xl flex-col overflow-hidden shadow-xl min-w-[320px] ${mobileActiveTab === 'chat' ? 'flex' : 'hidden lg:flex'}`}>
             {/* Chat Header */}
             <div className="flex justify-between items-center px-6 py-4 border-b border-white/5 bg-white/[0.01]">
               <div className="flex items-center gap-2.5 min-w-0 flex-1 pr-4">
@@ -534,7 +564,7 @@ const Chatbot = ({
               </button>
             </form>
           </div>
-        </div>
+        </div></div>
       )}
     </div>
   );
